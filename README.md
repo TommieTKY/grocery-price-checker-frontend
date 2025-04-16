@@ -1,3 +1,3 @@
-# Portfolio
+# Grocery Price Checker Front End
 
-Hi, I am Tommie. This is my portfolio.
+This is the front end of Grocery Price Checker project .
