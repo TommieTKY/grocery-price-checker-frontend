@@ -70,7 +70,7 @@ th {
 
 @media (max-width: 430px) {
     nav {
-            padding: 0 0 !important;
+            padding: 0 !important;
         }
     
     .navbar-brand {
@@ -80,5 +80,12 @@ th {
     th, td {
         font-size: 0.9rem !important;
         padding: 0.3rem !important;
+    }
+}
+
+/* For iphone SE3 (my phone) and similar devices */
+@media (max-width: 375px) {
+    .navbar-brand {
+        font-size: 0.9rem !important;
     }
 }

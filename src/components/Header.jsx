@@ -90,9 +90,6 @@ export default function Header({ setSelectedSubcategory, categories }) {
               </ul>
             </div>
           </div>
-
-
-          
         </div>
       </nav>
     </header>
