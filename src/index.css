@@ -1,0 +1,84 @@
+.textcolor{
+    color: #B07B00;
+}
+
+nav{
+    padding: 0 1.5rem !important;
+}
+
+.nav-link{
+    font-size: 1.2rem;
+    margin: 0 1rem;
+}
+
+main{
+    background: url("../lemon.jpg") center center no-repeat;
+    background-size: cover;
+    min-height: 85vh;
+}
+
+.welcome__h1{
+    margin: 5rem 0 5rem 0;
+}
+
+td, th {
+    padding: 0.5rem 1rem !important;
+}
+
+th {
+    background-color: #B07B00 !important;
+    color: white !important;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #FCF5E1;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td {
+    background-color: #FCF5E1;
+}
+
+.dropdown-item:hover {
+    background-color: #B07B00 !important;
+    color: white !important;
+}
+
+.offcanvas.show .nav-link {
+    font-size: 2rem !important;
+}
+
+.offcanvas.show .dropdown-item {
+    font-size: 1.8rem !important;
+}
+
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0 0.7rem !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem !important;
+    }
+
+    th,
+    td {
+        font-size: 1.1rem !important;
+        padding: 0.4rem !important;
+    }
+}
+
+@media (max-width: 430px) {
+    nav {
+            padding: 0 0 !important;
+        }
+    
+    .navbar-brand {
+        font-size: 1.1rem !important;
+    }
+
+    th, td {
+        font-size: 0.9rem !important;
+        padding: 0.3rem !important;
+    }
+}

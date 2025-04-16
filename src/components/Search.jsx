@@ -1,0 +1,39 @@
+import { useState } from 'react';
+
+export default function Search({ categories, setSelectedSubcategory }) {
+    const [inputValue, setInputValue] = useState("");
+
+    const searchCategories = categories.filter(each => each.parent_category_id !== null);
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const selectedCategory = searchCategories.find(category => category.name === inputValue);
+        if (selectedCategory) {
+            setSelectedSubcategory(selectedCategory);
+            setInputValue("");
+        } else {
+            console.log("No matching category found.");
+        }
+    }
+
+    return (
+        <div id="search" className="d-flex justify-content-end align-items-center pt-4">
+            <input
+                type="text"
+                list="itemList"
+                id="searchOption"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                className="form-control d-inline w-auto me-2"
+            />
+            <datalist id="itemList">
+                {searchCategories.map((category) => (
+                    <option key={category._id} value={category.name} />
+                ))}
+            </datalist>
+            <button id="searchButton" onClick={handleSearch} className="btn btn-warning text-white">
+                Search
+            </button>
+        </div>
+    );
+}
