@@ -49,7 +49,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
     const [pricelb, setPricelb] = useState("");
     const [unitlb, setUnitlb] = useState("");
     const computedPricePerUnitLb =
-        pricelb && unitlb ? (parseFloat(pricelb) / parseFloat(unitlb)).toFixed(4) : "";
+        pricelb && unitlb ? (parseFloat(pricelb) / parseFloat(unitlb)).toFixed(3) : "";
     const lbBgClass =
         computedPricePerUnitLb !== "" &&
         parseFloat(computedPricePerUnitLb) <= acceptablePrice
@@ -62,7 +62,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
     const [pricekg, setPricekg] = useState("");
     const [unitkg, setUnitkg] = useState("");
     const computedPricePerUnitKg =
-        pricekg && unitkg ? (parseFloat(pricekg) / (parseFloat(unitkg) * 2.2046)).toFixed(4) : "";  
+        pricekg && unitkg ? (parseFloat(pricekg) / (parseFloat(unitkg) * 2.2046)).toFixed(3) : "";  
     const kgBgClass =
         computedPricePerUnitKg !== "" &&
         parseFloat(computedPricePerUnitKg) <= acceptablePrice
@@ -93,7 +93,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
                             <td>{item.store}</td>
                             <td>${item.price.toFixed(2)}</td>
                             <td>{item.unit}</td>
-                            <td>${item.price_per_unit.toFixed(4)}</td>
+                            <td>${item.price_per_unit.toFixed(3)}</td>
                             </tr>
                         ))}
                         </tbody>
@@ -164,7 +164,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
                         </div>
 
                         {/* Price Meaning Legend */}
-                        <div class="form-text d-flex justify-content-center">
+                        <div className="form-text d-flex justify-content-center">
                             <div className="d-inline-block text-start">
                                 <p className="mb-0"><span className="bg-danger-subtle">$(price per unit)</span> means the price is unacceptable.</p>
                                 <p><span className="bg-success-subtle">$(price per unit)</span> means the price is acceptable.</p>
