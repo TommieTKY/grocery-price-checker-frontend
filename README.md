@@ -33,18 +33,21 @@ A React-based web application for comparing grocery prices across stores and cat
 - **Framework**: React 19 + Vite
 - **Routing**: react‑router‑dom v7
 - **Styling**: Bootstrap 5 + custom CSS
-- **API**: Fetch from [Grocery Price Checker API](https://grocery-price-checker.onrender.com/admin)
+- **API**: Fetch from [Grocery Price Checker API](https://grocery-price-checker.onrender.com)
 - **State Management**: React Hooks (`useState`, `useEffect`)
 
 ---
 
 1. **Clone the repository**
+
    `git clone https://github.com/TommieTKY/grocery-price-checker-frontend.git`
 
 2. **Install dependencies**
+
    `npm install`
 
 3. **Start the development server**
+
    `npm run dev`
 
 ---
