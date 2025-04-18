@@ -1,22 +1,22 @@
+import { useNavigate } from "react-router";
+
 export default function Header({ setSelectedSubcategory, categories }) {
+  const navigate = useNavigate();
+
   const menuCategories = categories.filter(each => each.parent_category_id === null);
+
   const subCategoryMap = categories.reduce((acc, category) => {
     if (category.parent_category_id) {
-      if (!acc[category.parent_category_id]) {
-        acc[category.parent_category_id] = [];
-      }
-      acc[category.parent_category_id].push(category);
+      (acc[category.parent_category_id] ||= []).push(category);
     }
     return acc;
   }, {});
 
   const handleDropdownItemClick = (subcat) => {
     setSelectedSubcategory(subcat);
-    const navOffcanvas  = document.getElementById("offcanvasNavbar");
-    const bsOffcanvas = window.bootstrap?.Offcanvas.getInstance(navOffcanvas);
-    if (bsOffcanvas) {
-      bsOffcanvas.hide();
-    }
+    navigate(`/${subcat.name}`);
+    const navOffcanvas = document.getElementById("offcanvasNavbar");
+    window.bootstrap?.Offcanvas.getInstance(navOffcanvas)?.hide();
   };
 
   return (
@@ -25,8 +25,8 @@ export default function Header({ setSelectedSubcategory, categories }) {
         <div className="container-fluid flex-nowrap">
           <a
             className="navbar-brand fs-3 textcolor fw-semibold"
-            href="#"
-            onClick={() => setSelectedSubcategory(null)}
+            href="/"
+            onClick={() => { setSelectedSubcategory(null); navigate('/'); }}
           >
             Tommie's Grocery Price Checker
           </a>
@@ -74,14 +74,13 @@ export default function Header({ setSelectedSubcategory, categories }) {
                     <ul className="dropdown-menu">
                       {(subCategoryMap[category._id] || []).map((subcat) => (
                         <li key={subcat._id}>
-                          <a
+                          <button
                             className="dropdown-item textcolor fw-medium"
-                            href="#"
                             onClick={() => handleDropdownItemClick(subcat)}
                           >
                             {subcat.name.charAt(0).toUpperCase() +
                               subcat.name.slice(1)}
-                          </a>
+                          </button>
                         </li>
                       ))}
                     </ul>

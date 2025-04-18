@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router";
 
 export default function Search({ categories, setSelectedSubcategory }) {
+    const navigate = useNavigate();
     const [inputValue, setInputValue] = useState("");
 
     const searchCategories = categories.filter(each => each.parent_category_id !== null);
@@ -10,6 +12,7 @@ export default function Search({ categories, setSelectedSubcategory }) {
         const selectedCategory = searchCategories.find(category => category.name === inputValue);
         if (selectedCategory) {
             setSelectedSubcategory(selectedCategory);
+            navigate(`/${subcat.name}`);
             setInputValue("");
         } else {
             console.log("No matching category found.");
