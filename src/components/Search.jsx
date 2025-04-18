@@ -7,6 +7,7 @@ export default function Search({ categories, setSelectedSubcategory }) {
 
     const searchCategories = categories.filter(each => each.parent_category_id !== null);
 
+    // Function to handle search button click
     const handleSearch = (event) => {
         event.preventDefault();
         const selectedCategory = searchCategories.find(category => category.name === inputValue);
@@ -21,6 +22,7 @@ export default function Search({ categories, setSelectedSubcategory }) {
 
     return (
         <div id="search" className="d-flex justify-content-end align-items-center pt-4">
+            {/* Input field with autocomplete (datalist) for subcategory names */}
             <input
                 type="text"
                 list="itemList"
@@ -29,11 +31,14 @@ export default function Search({ categories, setSelectedSubcategory }) {
                 onChange={(e) => setInputValue(e.target.value)}
                 className="form-control d-inline w-auto me-2"
             />
+
+            {/* Autocomplete options rendered from subcategories */}
             <datalist id="itemList">
                 {searchCategories.map((category) => (
                     <option key={category._id} value={category.name} />
                 ))}
             </datalist>
+            
             <button id="searchButton" onClick={handleSearch} className="btn btn-warning text-white">
                 Search
             </button>

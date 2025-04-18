@@ -31,7 +31,6 @@ function App() {
           <Route
             index element={<Welcome />}
           />
-
           <Route
             path=":categoryName"
             element={ 
@@ -43,8 +42,6 @@ function App() {
             }
           />
         </Routes>
-        {/* {!selectedSubcategory && <Welcome />}
-        <Route path="/:categoryName" element={<Table selectedSubcategory={selectedSubcategory} />} /> */}
       </main>
       <Footer />
     </BrowserRouter>

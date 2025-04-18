@@ -6,6 +6,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
     const { categoryName } = useParams();
     const [groceries, setGroceries] = useState([]);
 
+    // Fetch grocery data from backend API once when component mounts
     useEffect(() => {
     const getGroceries = async () => {
       let response = await fetch( 
@@ -17,12 +18,14 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
     getGroceries();
     }, []);
 
+    // Filter groceries by selected subcategory and sort by price per unit (ascending)
     const filteredGroceries = selectedSubcategory 
       ? groceries.filter((item) => item.category_id === selectedSubcategory._id).sort((a, b) => a.price_per_unit - b.price_per_unit)
         : [];
     
     const [acceptablePrice, setAcceptablePrice] = useState(null);
 
+    // When category name from URL changes, update the selected subcategory
     useEffect(() => {
         if (
         categoryName &&
@@ -33,6 +36,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
         }
     }, [categoryName, categories, selectedSubcategory, setSelectedSubcategory]);
   
+    // Set the acceptable price as the highest price in the filtered groceries
     useEffect(() => {
         if (filteredGroceries.length > 0) {
             setAcceptablePrice(filteredGroceries[filteredGroceries.length - 1].price_per_unit);
@@ -41,6 +45,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
         }
     }, [filteredGroceries]);
 
+    // States and logic for price per lb input
     const [pricelb, setPricelb] = useState("");
     const [unitlb, setUnitlb] = useState("");
     const computedPricePerUnitLb =
@@ -53,6 +58,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
         ? "bg-danger-subtle"
         : "bg-info-subtle";
     
+    // States and logic for price per kg input (converted to lb)
     const [pricekg, setPricekg] = useState("");
     const [unitkg, setUnitkg] = useState("");
     const computedPricePerUnitKg =
@@ -70,6 +76,8 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
             {selectedSubcategory && (
                 <div className="container">
                     <h1 className="my-4">{selectedSubcategory.name.charAt(0).toUpperCase() + selectedSubcategory.name.slice(1)}</h1>
+                    
+                    {/* Grocery items table */}
                     <table className="table table-striped table-bordered table-sm w-auto mx-auto fs-5">
                         <thead>
                         <tr>
@@ -91,9 +99,11 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
                         </tbody>
                     </table>
 
+                    {/* Price Calculation Section */}
                     <section className="container">
                         <h2 className="my-4 pt-2">Price Calculation</h2>
-                        
+
+                        {/* Price Per Pound (lb) Calculator */}
                         <div className="my-4">
                             <h3>Price Per Pound (lb) / Individual Item:</h3>
                             <div className="input-group mb-3 flex-nowrap justify-content-center mx-auto">
@@ -123,6 +133,7 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
                             </div>
                         </div>
 
+                        {/* Price Per Kilogram (converted to lb) Calculator */}
                         <div className="my-4">
                             <h3>Price per Kilogram (kg) – Converted to Pounds:</h3>
                             <div className="input-group mb-3 flex-nowrap justify-content-center mx-auto">
@@ -151,6 +162,8 @@ export default function Table({ categories, selectedSubcategory, setSelectedSubc
                             </span>
                             </div>
                         </div>
+
+                        {/* Price Meaning Legend */}
                         <div class="form-text d-flex justify-content-center">
                             <div className="d-inline-block text-start">
                                 <p className="mb-0"><span className="bg-danger-subtle">$(price per unit)</span> means the price is unacceptable.</p>
